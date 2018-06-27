@@ -1,6 +1,8 @@
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
+const WebpackCdnPlugin = require('webpack-cdn-plugin');
+const findParentDir = require('find-parent-dir');
 
 const pkg = require('./package.json');
 
@@ -8,12 +10,12 @@ module.exports = {
   mode: 'development',
   entry: ['react-hot-loader/patch', './src/index.js'],
   output: {
-    path: __dirname + '/dist',
+    path: __dirname + '/dist/assets/bundles',
     publicPath: '/',
     filename: pkg.name + 'life-form-bundle.js'
   },
   devServer: {
-    contentBase: './dist',
+    contentBase: './dist/assets/bundles',
     hot: true
   },
   module: {
@@ -42,12 +44,17 @@ module.exports = {
       }
     ]
   },
-  resolve: {
-    extensions: ['*', '.js', '.jsx']
-  },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    new HtmlWebpackPlugin({template: './generated-html-templates/dev-index.html', title: pkg.name, injectedId: pkg.name}),
+    new HtmlWebpackPlugin({
+      template: './generated-html-templates/dev-index.html',
+      title: pkg.name,
+      injectedId: pkg.name,
+      showErrors: true
+    }),
     new Dotenv()
-  ]
+  ],
+  resolve: {
+    extensions: ['*', '.js', '.jsx']
+  }
 };

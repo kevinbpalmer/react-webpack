@@ -19,8 +19,8 @@ module.exports = {
   },
   entry: ['react-hot-loader/patch', './src/index.js'],
   output: {
-    path: __dirname + '/dist',
-    publicPath: '/',
+    path: __dirname + '/dist/assets/bundles',
+    publicPath: '/assets/bundles/',
     filename: pkg.name + '-bundle.js'
   },
   devServer: {

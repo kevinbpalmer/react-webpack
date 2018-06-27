@@ -1,18 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-const pkg = require('../package.json');
-const title = 'Life Form React Component TEST! YO!!!';
-
 import img from './img/background.jpg';
 import './global.sass';
+// assuming this is called from a file in a subdirectory of /myprojects/foo which contains .git directory
 
-console.log('process.env', process.env.HOT_MODULE);
+const pkg = require('../package.json');
+const title = 'TEST!!!!!';
 
 ReactDOM.render(
-  <div>
-    <h1>{title}</h1>
-    <img src={img} alt="AYYYO"/>
+  <div className="container">
+    <div className="row">
+      <div className="col-12">
+        <h1>{title}</h1>
+        <img className="img-fluid" src={img} alt="AYYYO" />
+      </div>
+    </div>
   </div>,
   document.getElementById(pkg.name)
 );
